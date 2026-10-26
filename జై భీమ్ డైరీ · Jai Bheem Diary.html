@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="te"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>జై భీమ్ డైరీ · Jai Bheem Diary</title>
+<style>
+:root{--bg:#f3f6fc;--card:#fff;--tx:#12203a;--mu:#5b6b8a;--pr:#1d4fd8;--pt:#fff;--ac:#e8a800;--rd:#c62828;--bd:#d5ddee;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1424;--card:#172038;--tx:#e8eefc;--mu:#9aa9c9;--pr:#6c97ff;--pt:#0b1226;--ac:#ffc94a;--rd:#ff7b72;--bd:#2a3556}}
+:root[data-theme="dark"]{--bg:#0e1424;--card:#172038;--tx:#e8eefc;--mu:#9aa9c9;--pr:#6c97ff;--pt:#0b1226;--ac:#ffc94a;--rd:#ff7b72;--bd:#2a3556}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font-family:"Noto Sans Telugu","Nirmala UI",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;padding-bottom:70px}
+#app{max-width:640px;margin:0 auto;padding:14px}
+h2{font-size:1.2em;margin:.2em 0 .6em}h3{font-size:1em;margin:.8em 0 .3em}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin:10px 0}
+button,select,input,textarea{font:inherit;color:var(--tx)}
+input,textarea,select{width:100%;padding:9px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);margin:3px 0 8px}
+textarea{min-height:110px}
+.b{background:var(--pr);color:var(--pt);border:0;border-radius:8px;padding:9px 14px;cursor:pointer}
+.b2{background:none;color:var(--pr);border:1px solid var(--pr)}.bd{background:var(--rd);color:#fff}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.mu{color:var(--mu);font-size:.9em}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;background:none;border:0;padding:8px 2px;font-size:.72em;color:var(--mu)}nav button.on{color:var(--pr);font-weight:700}nav span{display:block;font-size:1.5em}
+.cover{text-align:center;padding:20px 8px;background:linear-gradient(170deg,#0d2a8c,#1d4fd8 70%);color:#fff;border-radius:16px;min-height:80vh}
+.pic{width:190px;height:230px;margin:10px auto;border-radius:100px 100px 14px 14px;border:4px solid var(--ac);overflow:hidden;background:#0a1f6b;cursor:pointer}
+.pic img{width:100%;height:100%;object-fit:cover}.cover h1{font-size:2.6em;margin:.1em;color:var(--ac)}
+.kum{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--ac);vertical-align:middle;margin-right:8px;background:#0a1f6b}
+.cover select{width:auto;background:#fff;color:#111}.cover .b{background:var(--ac);color:#12203a;font-weight:700;padding:11px 26px;margin-top:10px}
+.g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.g b{text-align:center;font-size:.75em;color:var(--mu)}
+.d{aspect-ratio:1;min-height:44px;border:1px solid var(--bd);border-radius:8px;background:var(--card);padding:2px;font-size:.95em;position:relative;cursor:pointer}
+.d.s{color:var(--rd)}.d.h{background:rgba(232,168,0,.2)}.d.t{outline:2px solid var(--pr)}.d i{position:absolute;bottom:3px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--pr)}
+.tag{display:inline-block;background:rgba(29,79,216,.14);color:var(--pr);border-radius:20px;padding:1px 10px;font-size:.8em;margin:2px}
+.bal{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}.bal div{border:1px solid var(--bd);border-radius:10px;padding:6px}.bal b{font-size:1.4em;display:block;color:var(--pr)}
+.ck{display:flex;gap:8px;align-items:center}.ck input{width:auto;margin:0}.dn{text-decoration:line-through;color:var(--mu)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><div id="app"></div><nav id="nav"></nav>
+<script>
+var T={home:['హోమ్','Home'],cal:['క్యాలెండర్','Calendar'],diary:['డైరీ','Diary'],leave:['సెలవులు','Leaves'],rules:['నియమాలు','Rules'],set:['సెట్టింగ్స్','Settings'],
+enter:['ప్రవేశించండి','Enter'],dev:['రూపకల్పన మరియు నిర్వహణ: కుమార్ గోదారి','Developed and managed by Kumar Godari'],sub:['రోజువారీ డైరీ','Daily Diary'],
+addpic:['📷 చిత్రం చేర్చండి','📷 Add picture'],ttl:['శీర్షిక','Title'],det:['ఈరోజు వివరాలు','Details'],mood:['మూడ్','Mood'],pri:['ప్రాధాన్యత','Priority'],tags:['ట్యాగ్‌లు (కామాతో)','Tags (comma separated)'],
+tasks:['పనుల జాబితా','Task checklist'],add:['జోడించు','Add'],del:['తొలగించు','Delete'],cd:['ఈ ఎంట్రీని తొలగించాలా?','Delete this entry?'],saved:['✔ ఆటోమేటిక్‌గా సేవ్ అవుతుంది','✔ Saves automatically'],
+fu:['ఫాలో-అప్ తేదీ','Follow-up date'],priv:['వ్యక్తిగత గమనికలు','Private notes'],today:['ఈరోజు','Today'],up:['రాబోయే సెలవులు','Upcoming holidays'],pend:['పూర్తి కాని పనులు','Pending tasks'],
+mon:['ఈ నెల ఎంట్రీలు','Entries this month'],srch:['🔍 శోధన (శీర్షిక, వచనం, ట్యాగ్, సెలవు)','🔍 Search (title, text, tag, holiday)'],none:['ఏమీ లేవు','Nothing yet'],
+bal:['సెలవుల నిల్వ (ఈ సంవత్సరం)','Leave balance (this year)'],log:['సెలవు నమోదు','Log a leave'],date:['తేదీ','Date'],type:['రకం','Type'],hol:['సెలవు దినాలు','Holidays'],
+addh:['సెలవు/ముఖ్య తేదీ జోడించండి','Add holiday / important date'],name:['పేరు','Name'],lang:['భాష','Language'],theme:['థీమ్','Theme'],fs:['అక్షరాల పరిమాణం','Font size'],
+exp:['బ్యాకప్ తీసుకోండి','Backup'],imp:['పునరుద్ధరించండి','Restore'],ref:['సూచన మాత్రమే. అధికారిక NPDCL / తెలంగాణ ప్రభుత్వ ఉత్తర్వులతో సరిచూసుకోండి.','Indicative only. Verify against official NPDCL / Telangana Govt orders.'],
+cover:['కవర్','Cover'],ed:['మార్పు చేయండి','Edit']};
+var MN=[['జనవరి','January'],['ఫిబ్రవరి','February'],['మార్చి','March'],['ఏప్రిల్','April'],['మే','May'],['జూన్','June'],['జులై','July'],['ఆగస్టు','August'],['సెప్టెంబర్','September'],['అక్టోబర్','October'],['నవంబర్','November'],['డిసెంబర్','December']];
+var DN=[['ఆ','Su'],['సో','Mo'],['మం','Tu'],['బు','We'],['గు','Th'],['శు','Fr'],['శ','Sa']];
+var FIX=[['01-01','నూతన సంవత్సరం','New Year\'s Day'],['01-03','సావిత్రిబాయి ఫూలే జయంతి','Savitribai Phule Jayanti'],['01-26','గణతంత్ర దినోత్సవం','Republic Day'],['04-14','డా. బి.ఆర్. అంబేద్కర్ జయంతి','Dr. B.R. Ambedkar Jayanti'],['05-01','మే డే','May Day'],['06-02','తెలంగాణ ఆవిర్భావ దినోత్సవం','Telangana Formation Day'],['08-15','స్వాతంత్ర్య దినోత్సవం','Independence Day'],['10-02','గాంధీ జయంతి','Gandhi Jayanti'],['11-26','రాజ్యాంగ దినోత్సవం','Constitution Day'],['12-06','మహాపరినిర్వాణ దినం (అంబేద్కర్)','Ambedkar Mahaparinirvan Diwas'],['12-25','క్రిస్మస్','Christmas']];
+var CAT=[['పండుగ','Festival'],['ఐచ్ఛిక సెలవు','Optional holiday'],['జయంతి/వర్ధంతి','Jayanti / Death anniv.'],['కార్యాలయ కార్యక్రమం','Office event'],['ముఖ్య తేదీ','Important date']];
+var LT=[['CL','సాధారణ సెలవు (CL)','Casual Leave (CL)'],['EL','ఆర్జిత సెలవు (EL)','Earned Leave (EL)'],['HPL','అర్ధ వేతన సెలవు (HPL)','Half Pay Leave (HPL)'],['OH','ఐచ్ఛిక సెలవు (OH)','Optional Holiday (OH)']];
+var RULES=[['సాధారణ సెలవు (CL)','Casual Leave (CL)','సంవత్సరానికి నిర్ణీత రోజులు; నిల్వ చేసుకోలేరు. ఆదివారం/సెలవులు మధ్యలో వస్తే సాధారణంగా లెక్కించరు, అయితే ప్రకారం సంస్థ ఉత్తర్వులు చూడండి.','Fixed days per year; not carried forward. Rules on prefixing/suffixing holidays vary – check the circular.'],
+['ఆర్జిత సెలవు (EL)','Earned Leave (EL)','పనిచేసిన కాలానికి అనుగుణంగా జమ అవుతుంది; నిల్వ పరిమితి, నగదు మార్పిడి (encashment) నియమాలు ఉంటాయి.','Accrues with service; has an accumulation cap and encashment rules.'],
+['అర్ధ వేతన సెలవు (HPL)','Half Pay Leave (HPL)','సేవా కాలం ప్రకారం జమ; వైద్య కారణాలకు కమ్యూటెడ్ లీవ్‌గా మార్చుకునే అవకాశం ఉండవచ్చు.','Accrues with service; may be commuted for medical reasons.'],
+['ఐచ్ఛిక సెలవులు','Optional holidays','ప్రభుత్వం ప్రకటించిన జాబితా నుంచి నిర్ణీత సంఖ్యలో మాత్రమే వాడుకోవచ్చు.','Only a fixed number may be used from the officially notified list.'],
+['ప్రసూతి / పితృత్వ సెలవు','Maternity / Paternity','ప్రభుత్వ నిబంధనల ప్రకారం ప్రత్యేక సెలవులు ఉంటాయి; వైద్య ధృవీకరణ అవసరం.','Special leave as per Govt rules; medical certificate needed.'],
+['సెలవు దరఖాస్తు విధానం','Applying for leave','ముందుగా సంబంధిత అధికారి అనుమతి తీసుకోవాలి; అత్యవసరంలో వెంటనే తెలియజేసి, తర్వాత దరఖాస్తు ఇవ్వాలి.','Get prior sanction from the controlling officer; in emergencies inform immediately and apply after.'],
+['ప్రవర్తనా నియమావళి','Conduct rules','కార్యాలయ సమయపాలన, రికార్డుల గోప్యత, రాజకీయ కార్యకలాపాలపై పరిమితులు వంటి సేవా నిబంధనలు వర్తిస్తాయి.','Service conduct rules apply: punctuality, record confidentiality, limits on political activity.'],
+['భద్రతా జాగ్రత్తలు','Safety','విద్యుత్ పనుల్లో PPE, లైన్ క్లియరెన్స్ (PTW), ఎర్తింగ్ తప్పనిసరి.','PPE, permit-to-work line clearance and earthing are mandatory for line work.']];
+var S,v='cover',cur,cy,cm,E;
+function def(){return{lang:'te',theme:'auto',fs:16,diary:{},hol:[],leaves:[],bal:{CL:15,EL:30,HPL:20,OH:5},img:{}}}
+function load(){try{return Object.assign(def(),JSON.parse(localStorage.getItem('jb')||'{}'))}catch(e){return def()}}
+function save(){try{localStorage.setItem('jb',JSON.stringify(S))}catch(e){alert('Storage full / స్థలం నిండింది')}}
+S=load();
+function t(k){return T[k][S.lang=='te'?0:1]}function L(a){return a[S.lang=='te'?0:1]}
+function p(n){return(n<10?'0':'')+n}function ds(d){return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())}
+var now=new Date();cur=ds(now);cy=now.getFullYear();cm=now.getMonth();if(cy<2026)cy=2026;if(cy>2042)cy=2042;
+function hols(d){var r=[];FIX.forEach(function(f){if(d.slice(5)==f[0])r.push({te:f[1],en:f[2]})});S.hol.forEach(function(h){if(h.d==d)r.push({te:h.n,en:h.n})});return r}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function go(x){v=x;R();window.scrollTo(0,0)}
+function pick(k){var i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=function(){var f=i.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var m=480,s=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.img[k]=c.toDataURL('image/jpeg',.8);save();R()};im.src=r.result};r.readAsDataURL(f)};i.click()}
+function ent(d){return S.diary[d]||(S.diary[d]={title:'',text:'',mood:'😊',pri:'normal',tags:'',tasks:[],fu:'',priv:''})}
+function setf(f,val){ent(cur)[f]=val;save()}
+var V={};
+V.cover=function(){var a=S.img.amb?'<img src="'+S.img.amb+'" alt="">':'<svg viewBox="0 0 190 230" width="100%" height="100%"><rect width="190" height="230" fill="#0a1f6b"/><circle cx="95" cy="85" r="38" fill="#2f4fb0"/><path d="M25 230c0-60 30-85 70-85s70 25 70 85z" fill="#2f4fb0"/><text x="95" y="205" fill="#ffc94a" font-size="13" text-anchor="middle">'+esc(t('addpic'))+'</text></svg>';
+var k=S.img.kum?'<img class="kum" src="'+S.img.kum+'" alt="" onclick="pick(\'kum\')">':'<span class="kum" style="display:inline-block" onclick="pick(\'kum\')"></span>';
+return'<div class="cover"><div class="pic" onclick="pick(\'amb\')">'+a+'</div><h1>జై భీమ్</h1><div style="font-size:1.4em">Jai Bheem</div><p>'+t('sub')+' / Daily Diary</p><p>'+k+'<span>'+t('dev')+'</span></p><div><select onchange="S.lang=this.value;save();R()"><option value="te"'+(S.lang=='te'?' selected':'')+'>తెలుగు</option><option value="en"'+(S.lang=='en'?' selected':'')+'>English</option></select></div><button class="b" onclick="go(\'home\')">'+t('enter')+'</button></div>'};
+V.home=function(){var td=ds(new Date()),e=S.diary[td],up=[],i,d,x,pn=0,mc=0,k;
+for(i=0;i<200&&up.length<5;i++){d=new Date();d.setDate(d.getDate()+i);x=hols(ds(d));x.forEach(function(h){up.push(ds(d)+' · '+L([h.te,h.en]))})}
+for(k in S.diary){S.diary[k].tasks.forEach(function(q){if(!q.d)pn++});if(k.slice(0,7)==td.slice(0,7)&&(S.diary[k].title||S.diary[k].text))mc++}
+return'<h2>జై భీమ్ 🙏</h2><input id="q" placeholder="'+esc(t('srch'))+'" oninput="sr(this.value)"><div id="sr"></div><div class="card"><b>'+t('today')+': '+td+'</b><br>'+(e&&(e.title||e.text)?esc(e.title)+'<div class="mu">'+esc((e.text||'').slice(0,120))+'</div>':'<span class="mu">'+t('none')+'</span>')+'<br><button class="b" onclick="cur=\''+td+'\';go(\'diary\')">✍️ '+t('diary')+'</button></div><div class="row"><div class="card"><b>'+pn+'</b><div class="mu">'+t('pend')+'</div></div><div class="card"><b>'+mc+'</b><div class="mu">'+t('mon')+'</div></div></div><div class="card"><b>'+t('up')+'</b>'+(up.length?up.map(function(s){return'<div>🎉 '+esc(s)+'</div>'}).join(''):'<div class="mu">'+t('none')+'</div>')+'</div>'};
+function sr(q){q=q.toLowerCase().trim();var o=[],k,e;if(q){for(k in S.diary){e=S.diary[k];if((e.title+' '+e.text+' '+e.tags).toLowerCase().indexOf(q)>-1)o.push('<div class="card" onclick="cur=\''+k+'\';go(\'diary\')">📖 '+k+' – '+esc(e.title||e.text.slice(0,40))+'</div>')}
+FIX.concat(S.hol.map(function(h){return[h.d,h.n,h.n]})).forEach(function(f){if((f[1]+f[2]).toLowerCase().indexOf(q)>-1)o.push('<div class="card">🎉 '+esc(f[0])+' – '+esc(L([f[1],f[2]]))+'</div>')})}
+document.getElementById('sr').innerHTML=o.join('')}
+V.cal=function(){var f=new Date(cy,cm,1),n=new Date(cy,cm+1,0).getDate(),h='',i,d,ys='',td=ds(new Date());
+for(i=2026;i<=2042;i++)ys+='<option'+(i==cy?' selected':'')+'>'+i+'</option>';
+var g=DN.map(function(x,j){return'<b>'+L(x)+'</b>'}).join('');for(i=0;i<f.getDay();i++)g+='<span></span>';
+var ml=[];for(i=1;i<=n;i++){d=cy+'-'+p(cm+1)+'-'+p(i);var hh=hols(d),sn=new Date(cy,cm,i).getDay()==0,en=S.diary[d]&&(S.diary[d].title||S.diary[d].text);
+if(hh.length)hh.forEach(function(x){ml.push(i+' – '+esc(L([x.te,x.en])))});
+g+='<button class="d'+(sn?' s':'')+(hh.length?' h':'')+(d==td?' t':'')+'" onclick="cur=\''+d+'\';go(\'diary\')">'+i+(en?'<i></i>':'')+'</button>'}
+return'<h2>'+t('cal')+'</h2><div class="row"><button class="b b2" onclick="mv(-1)">◀</button><select onchange="cy=+this.value;R()">'+ys+'</select><button class="b b2" onclick="mv(1)">▶</button></div><h3 style="text-align:center">'+L(MN[cm])+' '+cy+'</h3><div class="g">'+g+'</div><button class="b b2" style="width:100%;margin-top:8px" onclick="var n=new Date();cy=Math.min(2042,Math.max(2026,n.getFullYear()));cm=n.getMonth();R()">'+t('today')+'</button><div class="card"><b>'+t('hol')+'</b>'+(ml.length?ml.map(function(s){return'<div>🎉 '+s+'</div>'}).join(''):'<div class="mu">'+t('none')+'</div>')+'</div>'};
+function mv(x){cm+=x;if(cm<0){cm=11;cy--}if(cm>11){cm=0;cy++}if(cy<2026){cy=2026;cm=0}if(cy>2042){cy=2042;cm=11}R()}
+V.diary=function(){var e=ent(cur),hh=hols(cur).map(function(x){return'<span class="tag">🎉 '+esc(L([x.te,x.en]))+'</span>'}).join(''),dn=new Date(cur+'T00:00:00'),ms=['😊','😐','😔','😡','🤩'].map(function(m){return'<option'+(e.mood==m?' selected':'')+'>'+m+'</option>'}).join('');
+return'<h2>'+t('diary')+'</h2><div class="row"><button class="b b2" onclick="sh(-1)">◀</button><b style="text-align:center">'+cur+' · '+L(DN[dn.getDay()])+'</b><button class="b b2" onclick="sh(1)">▶</button></div><div>'+hh+(dn.getDay()==0?'<span class="tag">☀️ ఆదివారం / Sunday</span>':'')+'</div>'+
+'<label>'+t('ttl')+'</label><input value="'+esc(e.title)+'" oninput="setf(\'title\',this.value)"><label>'+t('det')+'</label><textarea oninput="setf(\'text\',this.value)">'+esc(e.text)+'</textarea>'+
+'<div class="row"><div><label>'+t('mood')+'</label><select onchange="setf(\'mood\',this.value)">'+ms+'</select></div><div><label>'+t('pri')+'</label><select onchange="setf(\'pri\',this.value)">'+['low','normal','high'].map(function(x){return'<option'+(e.pri==x?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div></div>'+
+'<label>'+t('tags')+'</label><input value="'+esc(e.tags)+'" oninput="setf(\'tags\',this.value)"><label>'+t('fu')+'</label><input type="date" value="'+esc(e.fu)+'" onchange="setf(\'fu\',this.value)">'+
+'<h3>'+t('tasks')+'</h3>'+e.tasks.map(function(q,i){return'<div class="ck"><input type="checkbox"'+(q.d?' checked':'')+' onchange="tk('+i+')"><span class="'+(q.d?'dn':'')+'" style="flex:1">'+esc(q.t)+'</span><button class="b b2" onclick="tr('+i+')">✕</button></div>'}).join('')+'<div class="row"><input id="nt"><button class="b" style="flex:0" onclick="ta()">'+t('add')+'</button></div>'+
+'<label>'+t('priv')+'</label><textarea style="min-height:60px" oninput="setf(\'priv\',this.value)">'+esc(e.priv)+'</textarea><p class="mu">'+t('saved')+'</p><button class="b bd" onclick="if(confirm(t(\'cd\'))){delete S.diary[cur];save();R()}">'+t('del')+'</button>'};
+function sh(x){var d=new Date(cur+'T00:00:00');d.setDate(d.getDate()+x);cur=ds(d);R()}
+function ta(){var i=document.getElementById('nt');if(i.value.trim()){ent(cur).tasks.push({t:i.value.trim(),d:0});save();R()}}
+function tk(i){var q=ent(cur).tasks[i];q.d=q.d?0:1;save();R()}function tr(i){ent(cur).tasks.splice(i,1);save();R()}
+V.leave=function(){var y=new Date().getFullYear(),us={},hy=y,i,hs=[];LT.forEach(function(x){us[x[0]]=0});
+S.leaves.forEach(function(l){if(l.d.slice(0,4)==y)us[l.t]++});
+for(i=0;i<366;i++){var d=new Date(y,0,1+i);if(d.getFullYear()!=y)break;hols(ds(d)).forEach(function(x){hs.push(ds(d).slice(5)+' – '+esc(L([x.te,x.en])))})}
+S.hol.forEach(function(h){});
+return'<h2>'+t('leave')+'</h2><div class="card"><b>'+t('bal')+'</b><div class="bal">'+LT.map(function(x){return'<div><b>'+(S.bal[x[0]]-us[x[0]])+'</b>'+x[0]+'<div class="mu">/ <input style="width:46px;padding:2px" type="number" value="'+S.bal[x[0]]+'" onchange="S.bal[\''+x[0]+'\']=+this.value;save();R()"></div></div>'}).join('')+'</div><p class="mu">'+t('ref')+'</p></div>'+
+'<div class="card"><b>'+t('log')+'</b><div class="row"><input id="ld" type="date" value="'+ds(new Date())+'"><select id="lt">'+LT.map(function(x){return'<option value="'+x[0]+'">'+L([x[1],x[2]])+'</option>'}).join('')+'</select></div><button class="b" onclick="S.leaves.push({d:document.getElementById(\'ld\').value,t:document.getElementById(\'lt\').value});save();R()">'+t('add')+'</button>'+
+S.leaves.slice().sort(function(a,b){return a.d<b.d?1:-1}).map(function(l){return'<div class="row"><span>'+l.d+' · '+l.t+'</span><button class="b b2" style="flex:0" onclick="S.leaves.splice(S.leaves.findIndex(function(z){return z.d==\''+l.d+'\'&&z.t==\''+l.t+'\'}),1);save();R()">✕</button></div>'}).join('')+'</div>'+
+'<div class="card"><b>'+t('hol')+' '+y+'</b>'+hs.map(function(s){return'<div>🎉 '+s+'</div>'}).join('')+'<p class="mu">'+(S.lang=='te'?'తిథి ఆధారిత పండుగలు (ఉగాది, దసరా, దీపావళి, బతుకమ్మ మొదలైనవి) ప్రతి సంవత్సరం మారతాయి. అధికారిక జాబితా ప్రకారం కింద మీరే జోడించండి.':'Lunar-calendar festivals (Ugadi, Dasara, Diwali, Bathukamma etc.) change yearly. Add them below from the official list.')+'</p></div>'+
+'<div class="card"><b>'+t('addh')+'</b><input id="hd" type="date"><input id="hn" placeholder="'+t('name')+'"><button class="b" onclick="var d=hd.value,n=hn.value.trim();if(d&&n){S.hol.push({d:d,n:n});save();R()}">'+t('add')+'</button>'+S.hol.map(function(h,i){return'<div class="row"><span>'+h.d+' · '+esc(h.n)+'</span><button class="b b2" style="flex:0" onclick="S.hol.splice('+i+',1);save();R()">✕</button></div>'}).join('')+'</div>'};
+V.rules=function(){return'<h2>'+t('rules')+' · NPDCL / Telangana</h2><p class="mu">'+t('ref')+'</p>'+RULES.map(function(r){return'<div class="card"><b>'+L([r[0],r[1]])+'</b><div>'+L([r[2],r[3]])+'</div></div>'}).join('')};
+V.set=function(){return'<h2>'+t('set')+'</h2><div class="card"><label>'+t('lang')+'</label><select onchange="S.lang=this.value;save();R()"><option value="te"'+(S.lang=='te'?' selected':'')+'>తెలుగు</option><option value="en"'+(S.lang=='en'?' selected':'')+'>English</option></select><label>'+t('theme')+'</label><select onchange="S.theme=this.value;save();R()">'+['auto','light','dark'].map(function(x){return'<option'+(S.theme==x?' selected':'')+'>'+x+'</option>'}).join('')+'</select><label>'+t('fs')+': '+S.fs+'</label><input type="range" min="14" max="24" value="'+S.fs+'" onchange="S.fs=+this.value;save();R()"></div>'+
+'<div class="card"><button class="b" onclick="document.getElementById(\'bk\').value=JSON.stringify(S)">'+t('exp')+'</button> <button class="b b2" onclick="try{S=Object.assign(def(),JSON.parse(document.getElementById(\'bk\').value));save();R()}catch(e){alert(\'Invalid\')}">'+t('imp')+'</button><textarea id="bk"></textarea></div>'+
+'<div class="card"><button class="b b2" onclick="go(\'cover\')">'+t('cover')+'</button><p class="mu">జై భీమ్ డైరీ · '+t('dev')+'</p></div>'};
+function R(){var r=document.documentElement;r.setAttribute('lang',S.lang);if(S.theme=='auto')r.removeAttribute('data-theme');else r.setAttribute('data-theme',S.theme);document.body.style.fontSize=S.fs+'px';
+document.getElementById('app').innerHTML=V[v]();var n=document.getElementById('nav');
+n.style.display=v=='cover'?'none':'flex';
+n.innerHTML=[['home','🏠'],['cal','📅'],['diary','✍️'],['leave','🌴'],['rules','📜'],['set','⚙️']].map(function(x){return'<button class="'+(v==x[0]?'on':'')+'" onclick="go(\''+x[0]+'\')"><span>'+x[1]+'</span>'+t(x[0])+'</button>'}).join('')}
+R();
+</script></body></html>
